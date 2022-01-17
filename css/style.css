@@ -1,0 +1,19 @@
+body {
+  font-family: sans-serif;
+  padding: 1em 3em;
+}
+
+h1 {
+  color: darkRed;
+}
+
+button {
+  display: block;
+  width: 200px;
+  padding: 1em;
+  margin: 1em 0;
+}
+
+#total {
+  margin-top: 1em;
+}
