@@ -74,7 +74,7 @@ var games = [
   },
 ];
 
-var gamesList = document.querySelector(".games");
+var gamesList = document.querySelector("ul");
 
 for (i = 0; i < games.length; i++) {
   var gamesInfo = games[i];
@@ -113,7 +113,7 @@ function whatIDontLike(argument) {
   }
 }
 
-whatIDontLike("birds");
+whatIDontLike("when people sits down next to me on the buss");
 whatIDontLike(341);
 whatIDontLike(true);
 whatIDontLike();
@@ -133,6 +133,31 @@ Call the function, pass in to two values and assign the return value to be the i
 Test your function with the following value pairs: `(1, 42), (200, 150), (10, "50"), ("100", "400"), ("Ten", "One Hundred"), (null, 123)`;
 
 */
+
+function sumOfSub(numberOne, numberTwo) {
+  var num1 = numberOne;
+  var num2 = numberTwo;
+  var subs = document.querySelector("#subtraction");
+
+  if (typeof num1 === "string" && typeof num2 === "number") {
+    return (subs.innerHTML = parseInt(num1) - num2);
+  } else if (typeof num1 === "number" && typeof num2 === "string") {
+    return (subs.innerHTML = num1 - parseInt(num2));
+  } else if (typeof num1 === "number" && typeof num2 === "number") {
+    return (subs.innerHTML = num1 - num2);
+  } else if (typeof num1 === "string" && typeof num2 === "string") {
+    return (subs.innerHTML = parseInt(num1) - parseInt(num2));
+  } else {
+    return (subs.innerHTML = "Invalid argument(s)") && console.log("Invalid argument(s)");
+  }
+}
+
+sumOfSub(1, 42);
+sumOfSub(200, 150);
+sumOfSub(10, "50");
+sumOfSub("100", "400");
+sumOfSub("Ten", "One Hundred");
+sumOfSub(null, 123);
 
 /* Question 6
 
@@ -155,6 +180,23 @@ The `h1` element should look like this after the click event:
 
 */
 
+var pageButton = document.querySelector(".page");
+var headTitle = document.querySelector("title");
+var bodyElement = document.querySelector("body");
+var headerOne = document.querySelector("h1");
+
+function changeSite() {
+  headTitle.innerHTML = "Updated title";
+  bodyElement.style.backgroundColor = "yellow";
+  headerOne.innerHTML = "<a href='#'>" + headerOne.innerHTML + "</a>";
+  headerOne.style.color = "green";
+  headerOne.style.fontFamily = "impact";
+  gamesList.style.padding = "0px";
+  gamesList.style.listStyle = "none";
+}
+
+pageButton.onclick = changeSite;
+
 /*
 Question 7
 
@@ -162,25 +204,32 @@ Select the button with the class `price`.
 
 When the button is clicked, loop through the array below, add all the prices and assign the total to be the innerHTML value of the element with the id `total`.
 
-```js
-var toys = [
- {
-  name: "Lego",
-  price: 15.6,
- },
- {
-  name: "Master of the Universe",
-  price: "28.3",
- },
- {
-  name: "Barbie",
-  price: null,
- },
- {
-  name: "Mr Potato Head",
-  price: 89.99,
- },
-];
-```
 
 */
+/*
+var toys = [
+  {
+    name: "Lego",
+    price: 15.6,
+  },
+  {
+    name: "Master of the Universe",
+    price: "28.3",
+  },
+  {
+    name: "Barbie",
+    price: null,
+  },
+  {
+    name: "Mr Potato Head",
+    price: 89.99,
+  },
+];
+
+var priceButton = document.innerHTML(".price");
+
+function getPrice() {
+  for(i=0; i < toys.length; i++)
+}
+
+ */
