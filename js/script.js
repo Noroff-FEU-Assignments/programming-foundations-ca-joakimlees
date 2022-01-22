@@ -229,7 +229,7 @@ var toys = [
 ];
 
 /**
- * Function with one condition. If value types of "price" is either string or number, the totalPrice variable = converted price value(converts to number value types). plus the price value the next time the loop runs and so on till the end of the length of the array(length of the loop).
+ * Function with one condition. If value types of "price" is either string or number(if not, they get ignored. Since they don't meet the condition), the totalPrice variable = converted price value(converts to number value types). plus the price value the next time the loop runs and so on till the end of the length of the array(length of the loop).
  * Using the parseFloat over the parseInt, since price can contain comma decimals.
  * Finally the innerHTML of displayTotal is set to be the value of the totalPrice variable.
  */
