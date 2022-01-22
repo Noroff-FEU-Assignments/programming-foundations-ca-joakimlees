@@ -76,7 +76,7 @@ var games = [
 
 var gamesList = document.querySelector("ul");
 
-for (i = 0; i < games.length; i++) {
+for (var i = 0; i < games.length; i++) {
   var gamesInfo = games[i];
 
   if (gamesInfo.rating <= 3.5 && gamesInfo.rating !== null) {
@@ -104,19 +104,22 @@ Test your function by calling it with a value of each of these types:
 - Null
 
 */
-
-function whatIDontLike(argument) {
-  if (typeof argument !== typeof "string") {
+/**
+ * Function that accepts one parameter and console logs whether or not it's a string.
+ * @param {String value representing a dislike} dislikeValue
+ */
+function whatIDontLike(dislikeValue) {
+  if (typeof dislikeValue !== "string") {
     console.log("please send in a string");
-  } else if (typeof argument === typeof "string") {
-    console.log("I dont like " + argument);
+  } else {
+    console.log("I dont like " + dislikeValue);
   }
 }
 
 whatIDontLike("when people sits down next to me on the buss");
 whatIDontLike(341);
 whatIDontLike(true);
-whatIDontLike();
+whatIDontLike(null);
 
 /* Question 5
 
@@ -134,30 +137,30 @@ Test your function with the following value pairs: `(1, 42), (200, 150), (10, "5
 
 */
 
+/**
+ * Function with 2 parameters, which subtracts the second from the first. But with one condition, which is that if either of the parameters/arguments are NaN(Not a Number, it returns the string value "Invalid argument(s)").
+ * @param {first number value} numberOne
+ * @param {second number value} numberTwo
+ * @returns The value of numberOne minus numberTwo.
+ */
 function sumOfSub(numberOne, numberTwo) {
-  var num1 = numberOne;
-  var num2 = numberTwo;
-  var subs = document.querySelector("#subtraction");
-
-  if (typeof num1 === "string" && typeof num2 === "number") {
-    return (subs.innerHTML = parseInt(num1) - num2);
-  } else if (typeof num1 === "number" && typeof num2 === "string") {
-    return (subs.innerHTML = num1 - parseInt(num2));
-  } else if (typeof num1 === "number" && typeof num2 === "number") {
-    return (subs.innerHTML = num1 - num2);
-  } else if (typeof num1 === "string" && typeof num2 === "string") {
-    return (subs.innerHTML = parseInt(num1) - parseInt(num2));
-  } else {
-    return (subs.innerHTML = "Invalid argument(s)") && console.log("Invalid argument(s)");
+  // checks if numberOne or numberTwo are NaN(Not a Number). If true return the string value ""Invalid argument(s)"
+  if (isNaN(parseInt(numberOne)) || isNaN(parseInt(numberTwo))) {
+    return "Invalid argument(s)";
   }
+  // returns numberOne minus numberTwo. (unless the if statement above is true).
+  return numberOne - numberTwo;
 }
 
-sumOfSub(1, 42);
-sumOfSub(200, 150);
-sumOfSub(10, "50");
-sumOfSub("100", "400");
-sumOfSub("Ten", "One Hundred");
-sumOfSub(null, 123);
+var subs = document.querySelector("#subtraction");
+
+// The innerHTML element = the return value from the sumOfSub function.
+subs.innerHTML += sumOfSub(1, 42) + ", ";
+subs.innerHTML += sumOfSub(200, 150) + ", ";
+subs.innerHTML += sumOfSub(10, "50") + ", ";
+subs.innerHTML += sumOfSub("100", "400") + ", ";
+subs.innerHTML += sumOfSub("Ten", "One Hundred") + ", ";
+subs.innerHTML += sumOfSub(null, 123);
 
 /* Question 6
 
@@ -188,11 +191,10 @@ var headerOne = document.querySelector("h1");
 function changeSite() {
   headTitle.innerHTML = "Updated title";
   bodyElement.style.backgroundColor = "yellow";
-  headerOne.innerHTML = "<a href='#'>" + headerOne.innerHTML + "</a>";
-  headerOne.style.color = "green";
   headerOne.style.fontFamily = "impact";
   gamesList.style.padding = "0px";
   gamesList.style.listStyle = "none";
+  headerOne.innerHTML = "<a href='#' style='color: green'>" + headerOne.innerHTML + "</a>";
 }
 
 pageButton.onclick = changeSite;
@@ -206,7 +208,7 @@ When the button is clicked, loop through the array below, add all the prices and
 
 
 */
-/*
+
 var toys = [
   {
     name: "Lego",
@@ -226,10 +228,24 @@ var toys = [
   },
 ];
 
-var priceButton = document.innerHTML(".price");
+/**
+ * Function with one condition. If value types of "price" is either string or number, the totalPrice variable = converted price value(converts to number value types). plus the price value the next time the loop runs and so on till the end of the length of the array(length of the loop).
+ * Using the parseFloat over the parseInt, since price can contain comma decimals.
+ * Finally the innerHTML of displayTotal is set to be the value of the totalPrice variable.
+ */
+function getTotalPrice() {
+  var totalPrice = 0;
+  var displayTotal = document.querySelector("#total");
 
-function getPrice() {
-  for(i=0; i < toys.length; i++)
+  for (var i = 0; i < toys.length; i++) {
+    if (typeof toys[i].price === "string" || typeof toys[i].price === "number") {
+      totalPrice += parseFloat(toys[i].price);
+    }
+  }
+
+  displayTotal.innerHTML = totalPrice;
 }
 
- */
+var calcPriceButton = document.querySelector(".price");
+
+calcPriceButton.onclick = getTotalPrice;
