@@ -79,7 +79,7 @@ var gamesList = document.querySelector("ul");
 for (var i = 0; i < games.length; i++) {
   var gamesInfo = games[i];
 
-  if (gamesInfo.rating <= 3.5 && gamesInfo.rating !== null) {
+  if (gamesInfo.rating < 3.5 && gamesInfo.rating !== null) {
     gamesList.innerHTML += "<li>" + gamesInfo.title + ": " + gamesInfo.rating + "</li>";
   }
 }
@@ -188,13 +188,17 @@ var headTitle = document.querySelector("title");
 var bodyElement = document.querySelector("body");
 var headerOne = document.querySelector("h1");
 
+/**
+ * Function that change the styling/css and the innerHTML of different elements.
+ */
 function changeSite() {
   headTitle.innerHTML = "Updated title";
   bodyElement.style.backgroundColor = "yellow";
   headerOne.style.fontFamily = "impact";
   gamesList.style.padding = "0px";
   gamesList.style.listStyle = "none";
-  headerOne.innerHTML = "<a href='#' style='color: green'>" + headerOne.innerHTML + "</a>";
+  headerOne.innerHTML = "<a href='#'>" + headerOne.innerHTML + "</a>";
+  /*could also have change the color of h1 here with style='color: green;' but chose to have it in the css. Could also have applied the style on the headerOne(h1), but that didn't change the actual color of the text, so chose to apply it on anchor tag. */
 }
 
 pageButton.onclick = changeSite;
